@@ -178,10 +178,23 @@ for i in range(len(maze)):
             g.add_edge((i, j-1), (i, j))
         if i-1 >= 0 and maze[i-1][j] == 1 and maze[i][j] == 1:
             g.add_edge((i-1, j), (i, j))
+a = arg.s
+b = arg.d
 
 
-temp_list = g.source_to_destination(
-    tuple(map(int, arg.s.split(','))), tuple(map(int, arg.d.split(','))))
+if a is None:
+    a = (0, 0)
+else:
+    a = tuple(map(int, a.split(',')))
+
+
+if b is None:
+    b = (len(maze)-1, len(maze[0])-1)
+else:
+    b = tuple(map(int, b.split(',')))
+
+
+temp_list = g.source_to_destination(a, b)
 
 output_list = [[0 for i in range(len(maze[0]))]
                for j in range(len(maze))]
