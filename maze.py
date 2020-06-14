@@ -90,7 +90,7 @@ class Graph:
         # Update dist value of the adjacent vertices
         # of the picked vertex only if the current
         # distance is greater than new distance and
-        # the vertex in not in the shotest path tree
+        # and vertex_visited is false
 
         while vertex_visited[temp] is False:
             vertex_visited[temp] = True
@@ -149,15 +149,17 @@ g = Graph()
 # file handling
 
 pars = argparse.ArgumentParser()
-pars.add_argument('ip_file', help='Input File', type=str)
-pars.add_argument('op_file', help='Output File', type=str)
+pars.add_argument('--i', "--inputfile", help='Input File',
+                  type=str, default="input.txt")
+pars.add_argument('--o', "--outputfile", help='Output File',
+                  type=str, default="output.txt")
 pars.add_argument('--s', '--sourece', help='add destination', type=str)
 pars.add_argument('--d', '--destination', help='add source', type=str)
 arg = pars.parse_args()
 
 
-file = open(arg.ip_file, 'r')
-file1 = open(arg.op_file, 'w')
+file = open(arg.i, 'r')
+file1 = open(arg.o, 'w')
 maze = []
 
 # getting input from input.txt
@@ -166,8 +168,8 @@ for data in file:
     [x.strip('\n') for x in data]
     maze.append([int(x) for x in data.split()])
 
-file = open(arg.ip_file, 'r')
-file1 = open(arg.op_file, 'w')
+file = open(arg.i, 'r')
+file1 = open(arg.o, 'w')
 
 order = len(maze)
 
